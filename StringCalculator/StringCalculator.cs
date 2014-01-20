@@ -6,82 +6,40 @@ namespace StringCalculator
 {
     public class StringCalculator
     {
-        public int Add(string numbers)
+        private IEnumerable<int> numbers;
+
+        public int Add(string s)
         {
-            StringCalculatorInput input = new StringCalculatorInput(numbers);
-            return input.GetNumbers().Sum();
+            StringCalculatorInput input = new StringCalculatorInput(s);
+
+            numbers = input.GetNumbers().ToList();
+
+            CheckForNegatives();
+            RemoveNumbersLargerThan1000();
+
+            return numbers.Sum();
         }
 
-        private IEnumerable<int> ParseNumbers(string numbers)
+        private void RemoveNumbersLargerThan1000()
         {
-
-            var lines = SplitNumbersIntoLines(numbers).ToList();
-
-            char delimiter = GetDelimiter(lines);
-
-            return GetNumberLines(lines, delimiter);
+            numbers = numbers.Where(n => n <= 1000);
         }
 
-        private IEnumerable<int> GetNumberLines(IEnumerable<string> lines, char delimiter)
+        private void CheckForNegatives()
         {
-            List<int> result = new List<int>();
-            var operationLines = lines.Where(line => !line.StartsWith("//"));
-            foreach (var line in operationLines)
-            {
-                result.AddRange(GetNumbersInLine(line, delimiter));
-            }
-            return result;
+            if (AllNumbersPositive()) 
+                return;
+
+            var message = "Negative numbers not allowed: ";
+            var negativeNumbers = numbers.Where(n => n < 0);
+            var negativeNumbersAsStrings = negativeNumbers.Select(n => n.ToString());
+            message += negativeNumbersAsStrings.Aggregate((m, n) => m + ", " + n);
+            throw new ArgumentException(message);
         }
 
-        private char GetDelimiter(IEnumerable<string> lines)
+        private bool AllNumbersPositive()
         {
-            char delimiter = ',';
-
-            var delimiterLine = lines.SingleOrDefault(line => line.StartsWith("//"));
-            if (delimiterLine != null)
-                delimiter = GetDelimiterFromLine(delimiterLine);
-
-            return delimiter;
-        }
-
-        private char GetDelimiterFromLine(string delimiterLine)
-        {
-            return delimiterLine.Substring(2, 1)[0];
-        }
-
-        private IEnumerable<int> GetNumbersInLine(string line, char delimiter)
-        {
-            var bunchOfNumbers = SplitNumbers(line, delimiter);
-            if (bunchOfNumbers.Any(number => number == ""))
-                throw new ArgumentException(line);
-
-            var bunchOfIntegers = TransformNumbers(bunchOfNumbers);
-            return bunchOfIntegers;
-        }
-
-        private IEnumerable<string> SplitNumbersIntoLines(string numbers)
-        {
-            return numbers.Split('\n');
-        }
-
-        private IEnumerable<int> TransformNumbers(IEnumerable<string> bunchOfNumbers)
-        {
-            var result = new List<int>();
-            foreach (string number in bunchOfNumbers)
-            {
-                result.Add(NumberAsInt(number));
-            }
-            return result;
-        }
-
-        private int NumberAsInt(string number)
-        {
-            return Int32.Parse(number);
-        }
-
-        private IEnumerable<string> SplitNumbers(string numbers, char delimiter)
-        {
-            return numbers.Split(delimiter);
+            return numbers.All(number => number >= 0);
         }
     }
 }

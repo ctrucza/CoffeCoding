@@ -48,7 +48,30 @@ namespace StringCalculator
             Assert.AreEqual(3, Add("//%\n1%2"));
         }
 
-        private int Add(string numbers)
+        [Test]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Negative numbers not allowed: -1")]
+        public void Add_NegativeNumber_ThrowsAndIncludesTheNumber()
+        {
+            StringCalculator calculator = new StringCalculator();
+            calculator.Add("-1");
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Negative numbers not allowed: -1, -2")]
+        public void Add_TwoNegativeNumbers_ThrowsAndIncludesBothNumbers()
+        {
+            StringCalculator calculator = new StringCalculator();
+            calculator.Add("-1, -2");
+        }
+
+        [Test]
+        public void Add_NumbersGreaterThan1000_AreIgnored()
+        {
+            StringCalculator calculator = new StringCalculator();
+            Assert.AreEqual(2, calculator.Add("2,1001"));
+        }
+
+        private static int Add(string numbers)
         {
             StringCalculator c = new StringCalculator();
             return c.Add(numbers);

@@ -42,14 +42,6 @@ namespace StringCalculator
             }
 
             var numbersFromLine = numbers.Select(int.Parse).ToList();
-            if (numbersFromLine.Any(number => number < 0))
-            {
-                var message = "Negative numbers not allowed: ";
-                var negativeNumbers = numbersFromLine.Where(n => n < 0);
-                var negativeNumbersAsStrings = negativeNumbers.Select(n => n.ToString());
-                message += negativeNumbersAsStrings.Aggregate((m, n) => m + ", " + n);
-                throw new ArgumentException(message);
-            }
             return numbersFromLine;
         }
 
@@ -73,7 +65,7 @@ namespace StringCalculator
             return line.StartsWith(separatorPrefix);
         }
 
-        private bool IsNumberLine(string line)
+        private static bool IsNumberLine(string line)
         {
             return !IsSeparatorLine(line);
         }
