@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using NUnit.Framework;
 
 namespace StringCalculator
@@ -52,82 +50,11 @@ namespace StringCalculator
 
         private int Add(string numbers)
         {
-            if (numbers == "")
-                return 0;
-            var bunchOfIntegers = ParseNumbers(numbers);
-            return bunchOfIntegers.Sum();
+            StringCalculator c = new StringCalculator();
+            return c.Add(numbers);
+
         }
 
-        private IEnumerable<int> ParseNumbers(string numbers)
-        {
 
-            var lines = SplitNumbersIntoLines(numbers).ToList();
-
-            char delimiter = GetDelimiter(lines);
-            
-            return GetNumberLines(lines, delimiter);
-        }
-
-        private IEnumerable<int> GetNumberLines(IEnumerable<string> lines, char delimiter)
-        {
-            List<int> result = new List<int>();
-            var operationLines = lines.Where(line => !line.StartsWith("//"));
-            foreach (var line in operationLines)
-            {
-                result.AddRange(GetNumbersInLine(line, delimiter));
-            }
-            return result;
-        }
-
-        private char GetDelimiter(IEnumerable<string> lines)
-        {
-            char delimiter = ',';
-
-            var delimiterLine = lines.SingleOrDefault(line => line.StartsWith("//"));
-            if (delimiterLine != null)
-                delimiter = GetDelimiterFromLine(delimiterLine);
-
-            return delimiter;
-        }
-
-        private char GetDelimiterFromLine(string delimiterLine)
-        {
-            return delimiterLine.Substring(2,1)[0];
-        }
-
-        private IEnumerable<int> GetNumbersInLine(string line, char delimiter)
-        {
-            var bunchOfNumbers = SplitNumbers(line, delimiter);
-            if (bunchOfNumbers.Any(number => number == ""))
-                throw new ArgumentException(line);
-
-            var bunchOfIntegers = TransformNumbers(bunchOfNumbers);
-            return bunchOfIntegers;
-        }
-
-        private IEnumerable<string> SplitNumbersIntoLines(string numbers)
-        {
-            return numbers.Split('\n');
-        }
-
-        private IEnumerable<int> TransformNumbers(IEnumerable<string> bunchOfNumbers)
-        {
-            var result = new List<int>();
-            foreach (string number in bunchOfNumbers)
-            {
-                result.Add(NumberAsInt(number));
-            }
-            return result;
-        }
-
-        private int NumberAsInt(string number)
-        {
-            return Int32.Parse(number);
-        }
-
-        private IEnumerable<string> SplitNumbers(string numbers, char delimiter)
-        {
-            return numbers.Split(delimiter);
-        }
     }
 }
