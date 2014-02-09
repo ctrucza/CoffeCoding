@@ -4,33 +4,39 @@ using System.Linq;
 
 namespace StringCalculator
 {
-    internal class StringCalculatorInput
+    internal class Parameter
     {
         private readonly string inputString;
         private IEnumerable<string> lines;
+        private BunchOfNumbers numbers = new BunchOfNumbers();
         private const string separatorPrefix = "//";
 
-        public StringCalculatorInput(string input)
+        public Parameter(string input)
         {
             inputString = input;
         }
 
         public IEnumerable<int> GetNumbers()
         {
+            ParseNumbers();
+            return numbers.GetNumbers();
+        }
+
+        private void ParseNumbers()
+        {
             if (inputString == "")
-                return new List<int>();
+                return;
 
             lines = inputString.Split('\n');
 
             char[] separators = FindSeparators();
             var numberLines = FindNumberLines();
 
-            List<int> result = new List<int>();
+            numbers = new BunchOfNumbers();
             foreach (var line in numberLines)
             {
-                result.AddRange(GetNumbersFromLine(line, separators));
+                numbers.AddNumbers(GetNumbersFromLine(line, separators));
             }
-            return result;
         }
 
         private static IEnumerable<int> GetNumbersFromLine(string line, char[] separators)
