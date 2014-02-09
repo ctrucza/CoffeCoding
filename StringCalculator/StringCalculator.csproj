@@ -45,14 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BunchOfNumbers.cs" />
-    <Compile Include="BunchOfNumbersTests.cs" />
+    <Compile Include="Tests\BunchOfNumbersTests.cs" />
     <Compile Include="NegativeNumbersNotAllowedException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringCalculator.cs" />
     <Compile Include="Parameter.cs" />
-    <Compile Include="ParameterTests.cs" />
-    <Compile Include="StringCalculatorTests.cs" />
+    <Compile Include="Tests\ParameterTests.cs" />
+    <Compile Include="Tests\StringCalculatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

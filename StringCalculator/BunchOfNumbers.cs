@@ -22,13 +22,10 @@ namespace StringCalculator
 
         private void CheckForNegativeNumbers()
         {
-            if (!numbers.Any(n => n < 0))
-                return;
-            throw new NegativeNumbersNotAllowedException(numbers.Where(n => n < 0));
-            //string message = BuildMessage();
-            //throw new ArgumentException(message);
+            if (numbers.Any(n => n < 0))
+            {
+                throw new NegativeNumbersNotAllowedException(numbers.Where(n => n < 0));
+            }
         }
-
-
     }
 }

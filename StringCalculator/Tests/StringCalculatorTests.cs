@@ -1,7 +1,7 @@
 using System;
 using NUnit.Framework;
 
-namespace StringCalculator
+namespace StringCalculator.Tests
 {
     [TestFixture]
     public class StringCalculatorTests
