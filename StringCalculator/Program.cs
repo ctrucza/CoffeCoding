@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-/*
+﻿/*
 The Rules
 1. One level of indentation per method
 2. Don’t use the ELSE keyword 

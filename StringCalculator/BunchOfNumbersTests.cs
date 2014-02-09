@@ -16,29 +16,38 @@ namespace StringCalculator
 
         [Test]
         [ExpectedException(typeof(ArgumentException))]
-        public void Validate_NegativeNumber_Fails()
+        public void AddNumbers_NegativeNumber_Fails()
         {
             bunchOfNumbers.AddNumbers(new[] { -1 });
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Negative numbers not allowed: -1")]
-        public void Validate_NegativeNumber_ThrowsAndIncludesTheNumber()
+        public void AddNumbers_NegativeNumber_ThrowsAndIncludesTheNumber()
         {
             bunchOfNumbers.AddNumbers(new[]{-1});
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Negative numbers not allowed: -1, -2")]
-        public void Add_TwoNegativeNumbers_ThrowsAndIncludesBothNumbers()
+        public void AddNumbers_TwoNegativeNumbers_ThrowsAndIncludesBothNumbers()
         {
             bunchOfNumbers.AddNumbers(new[] { -1, -2 });
         }
 
         [Test]
-        public void Validate_NotNegativeNumber_DoesNotFail()
+        public void AddNumbers_NotNegativeNumber_DoesNotFail()
         {
             bunchOfNumbers.AddNumbers(new[]{1});
+            CollectionAssert.IsNotEmpty(bunchOfNumbers.GetNumbers());
         }
+
+        [Test]
+        public void AddNumbers_LargeNumber_LargeNumberIsRemoved()
+        {
+            bunchOfNumbers.AddNumbers(new[]{1001});
+            CollectionAssert.IsEmpty(bunchOfNumbers.GetNumbers());
+        }
+
     }
 }

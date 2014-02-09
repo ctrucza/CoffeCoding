@@ -7,21 +7,22 @@ namespace StringCalculator
     class BunchOfNumbers
     {
         private readonly List<int> numbers = new List<int>();
+        private const int MAX_NUMBER = 1000;
 
         public void AddNumbers(IEnumerable<int> bunchOfNumbers)
         {
             numbers.AddRange(bunchOfNumbers);
-            Validate();
+            CheckForNegativeNumbers();
         }
 
         public IEnumerable<int> GetNumbers()
         {
-            return numbers;
+            return numbers.Where(n => n <= MAX_NUMBER);
         }
 
-        private void Validate()
+        private void CheckForNegativeNumbers()
         {
-            if (!numbers.Any(n => n < 0)) 
+            if (!numbers.Any(n => n < 0))
                 return;
 
             string message = BuildMessage();

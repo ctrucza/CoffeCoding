@@ -11,15 +11,7 @@ namespace StringCalculator
         {
             Parameter input = new Parameter(s);
             numbers = input.GetNumbers();
-
-            RemoveNumbersLargerThan1000();
-
             return numbers.Sum();
-        }
-
-        private void RemoveNumbersLargerThan1000()
-        {
-            numbers = numbers.Where(n => n <= 1000);
         }
     }
 }
