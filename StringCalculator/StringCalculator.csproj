@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="BunchOfNumbers.cs" />
     <Compile Include="BunchOfNumbersTests.cs" />
+    <Compile Include="NegativeNumbersNotAllowedException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringCalculator.cs" />

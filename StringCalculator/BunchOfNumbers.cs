@@ -24,20 +24,11 @@ namespace StringCalculator
         {
             if (!numbers.Any(n => n < 0))
                 return;
-
-            string message = BuildMessage();
-            throw new ArgumentException(message);
+            throw new NegativeNumbersNotAllowedException(numbers.Where(n => n < 0));
+            //string message = BuildMessage();
+            //throw new ArgumentException(message);
         }
 
-        private string BuildMessage()
-        {
-            var negativeNumbers = numbers.Where(n => n < 0);
-            var negativeNumbersAsStrings = negativeNumbers.Select(n => n.ToString());
-
-            var message = "Negative numbers not allowed: ";
-            message += negativeNumbersAsStrings.Aggregate((m, n) => m + ", " + n);
-            return message;
-        }
 
     }
 }

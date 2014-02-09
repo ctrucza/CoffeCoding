@@ -15,21 +15,21 @@ namespace StringCalculator
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(NegativeNumbersNotAllowedException))]
         public void AddNumbers_NegativeNumber_Fails()
         {
             bunchOfNumbers.AddNumbers(new[] { -1 });
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Negative numbers not allowed: -1")]
+        [ExpectedException(typeof(NegativeNumbersNotAllowedException), ExpectedMessage = "Negative numbers not allowed: -1")]
         public void AddNumbers_NegativeNumber_ThrowsAndIncludesTheNumber()
         {
             bunchOfNumbers.AddNumbers(new[]{-1});
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Negative numbers not allowed: -1, -2")]
+        [ExpectedException(typeof(NegativeNumbersNotAllowedException), ExpectedMessage = "Negative numbers not allowed: -1, -2")]
         public void AddNumbers_TwoNegativeNumbers_ThrowsAndIncludesBothNumbers()
         {
             bunchOfNumbers.AddNumbers(new[] { -1, -2 });

@@ -57,7 +57,7 @@ namespace StringCalculator
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Negative numbers not allowed: -1")]
+        [ExpectedException(typeof(NegativeNumbersNotAllowedException), ExpectedMessage = "Negative numbers not allowed: -1")]
         public void Add_NegativeNumber_ThrowsAndIncludesTheNumber()
         {
             StringCalculator calculator = new StringCalculator();
@@ -65,7 +65,7 @@ namespace StringCalculator
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Negative numbers not allowed: -1, -2")]
+        [ExpectedException(typeof(NegativeNumbersNotAllowedException), ExpectedMessage = "Negative numbers not allowed: -1, -2")]
         public void Add_TwoNegativeNumbers_ThrowsAndIncludesBothNumbers()
         {
             StringCalculator calculator = new StringCalculator();
