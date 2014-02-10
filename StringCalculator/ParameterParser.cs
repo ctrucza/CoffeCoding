@@ -16,10 +16,7 @@ namespace StringCalculator
             if (input == "")
                 return;
 
-            SplitLines(input);
-
-            FindSeparators();
-            FindNumberLines();
+            Parse(input);
 
             foreach (NumberLine line in numberLines)
             {
@@ -30,6 +27,13 @@ namespace StringCalculator
         public IEnumerable<int> GetNumbers()
         {
             return numbers;
+        }
+
+        private void Parse(string input)
+        {
+            SplitLines(input);
+            FindSeparators();
+            FindNumberLines();
         }
 
         private void SplitLines(string input)
