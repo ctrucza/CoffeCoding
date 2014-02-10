@@ -39,8 +39,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BunchOfNumbers.cs" />
-    <Compile Include="Tests\BunchOfNumbersTests.cs" />
+    <Compile Include="ParameterFilter.cs" />
+    <Compile Include="Tests\ParameterFilterTests.cs" />
     <Compile Include="NegativeNumbersNotAllowedException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

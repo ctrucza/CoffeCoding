@@ -9,7 +9,7 @@ namespace StringCalculator
         private readonly string inputString;
         private IEnumerable<string> lines;
         private const string separatorPrefix = "//";
-        private BunchOfNumbers numbers = new BunchOfNumbers();
+        private ParameterFilter numbers = new ParameterFilter();
 
         public Parameter(string input)
         {
@@ -32,7 +32,7 @@ namespace StringCalculator
             char[] separators = FindSeparators();
             var numberLines = FindNumberLines();
 
-            numbers = new BunchOfNumbers();
+            numbers = new ParameterFilter();
             foreach (var line in numberLines)
             {
                 numbers.AddNumbers(GetNumbersFromLine(line, separators));

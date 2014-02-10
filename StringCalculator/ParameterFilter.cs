@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace StringCalculator
 {
-    class BunchOfNumbers
+    class ParameterFilter
     {
         private readonly List<int> numbers = new List<int>();
         private const int MAX_NUMBER = 1000;
