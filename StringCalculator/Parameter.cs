@@ -8,8 +8,8 @@ namespace StringCalculator
     {
         private readonly string inputString;
         private IEnumerable<string> lines;
-        private BunchOfNumbers numbers = new BunchOfNumbers();
         private const string separatorPrefix = "//";
+        private BunchOfNumbers numbers = new BunchOfNumbers();
 
         public Parameter(string input)
         {
