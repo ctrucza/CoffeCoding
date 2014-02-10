@@ -74,5 +74,18 @@ namespace StringCalculator.Tests
             CollectionAssert.Contains(numbers, 1);
             CollectionAssert.Contains(numbers, 2);
         }
+
+        [Test]
+        public void Parse_WithMultipleSeparators_ConsidersAllSeparators()
+        {
+            parameterParser.Parse("//[$][%]\n1$2%3");
+            List<int> numbers = parameterParser.GetNumbers().ToList();
+            Assert.AreEqual(3, numbers.Count());
+            CollectionAssert.Contains(numbers, 1);
+            CollectionAssert.Contains(numbers, 2);
+            CollectionAssert.Contains(numbers, 3);
+
+        }
+
     }
 }

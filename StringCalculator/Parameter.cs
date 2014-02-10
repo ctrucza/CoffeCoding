@@ -15,8 +15,7 @@ namespace StringCalculator
         public IEnumerable<int> GetNumbers()
         {
             IEnumerable<int> allNumbers = parser.GetNumbers();
-            filter.AddNumbers(allNumbers);
-            return filter.GetNumbers();
+            return filter.FilterNumbers(allNumbers);
         }
     }
 }

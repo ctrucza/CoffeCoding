@@ -39,8 +39,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NumberLine.cs" />
     <Compile Include="ParameterFilter.cs" />
     <Compile Include="ParameterParser.cs" />
+    <Compile Include="SeparatorLine.cs" />
     <Compile Include="Tests\ParameterFilterTests.cs" />
     <Compile Include="NegativeNumbersNotAllowedException.cs" />
     <Compile Include="Program.cs" />
@@ -49,6 +51,7 @@
     <Compile Include="Parameter.cs" />
     <Compile Include="Tests\ParameterParserTests.cs" />
     <Compile Include="Tests\ParameterTests.cs" />
+    <Compile Include="Tests\SeparatorLineTests.cs" />
     <Compile Include="Tests\StringCalculatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
