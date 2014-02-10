@@ -11,7 +11,7 @@ namespace StringCalculator
         private readonly List<int> numbers = new List<int>();
         private char[] separators;
 
-        public void Parse(string input)
+        public ParameterParser(string input)
         {
             if (input == "")
                 return;

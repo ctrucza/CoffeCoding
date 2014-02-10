@@ -4,18 +4,18 @@ namespace StringCalculator
 {
     internal class Parameter
     {
-        private readonly ParameterParser parser = new ParameterParser();
-        private readonly ParameterFilter filter = new ParameterFilter();
+        private readonly IEnumerable<int> allNumbers;
 
         public Parameter(string input)
         {
-            parser.Parse(input);
+            ParameterParser parser = new ParameterParser(input);
+            allNumbers = parser.GetNumbers();
         }
 
         public IEnumerable<int> GetNumbers()
         {
-            IEnumerable<int> allNumbers = parser.GetNumbers();
-            return filter.FilterNumbers(allNumbers);
+            ParameterFilter filter = new ParameterFilter(allNumbers);
+            return filter.GetNumbers();
         }
     }
 }

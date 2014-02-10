@@ -7,9 +7,9 @@ namespace StringCalculator
         private string input;
         private List<char> separators = new List<char>();
 
-        public SeparatorLine(string s)
+        public SeparatorLine(string line)
         {
-            input = s;
+            input = line;
             RemoveMarker();
 
             if (ContainsMultipleSeparators())

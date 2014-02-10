@@ -8,10 +8,14 @@ namespace StringCalculator
         private readonly List<int> numbers = new List<int>();
         private const int MAX_NUMBER = 1000;
 
-        public IEnumerable<int> FilterNumbers(IEnumerable<int> bunchOfNumbers)
+        public ParameterFilter(IEnumerable<int> allNumbers)
         {
-            numbers.AddRange(bunchOfNumbers);
+            numbers.AddRange(allNumbers);
             CheckForNegativeNumbers();
+        }
+
+        public IEnumerable<int> GetNumbers()
+        {
             return numbers.Where(n => n <= MAX_NUMBER);
         }
 

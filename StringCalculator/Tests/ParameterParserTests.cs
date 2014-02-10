@@ -10,16 +10,11 @@ namespace StringCalculator.Tests
     {
         private ParameterParser parameterParser;
 
-        [SetUp]
-        public void SetUp()
-        {
-            parameterParser = new ParameterParser();
-        }
 
         [Test]
         public void Parse_EmptyInput_NoNumbers()
         {
-            parameterParser.Parse("");
+            parameterParser = new ParameterParser("");
             CollectionAssert.IsEmpty(parameterParser.GetNumbers());
         }
 
@@ -28,7 +23,7 @@ namespace StringCalculator.Tests
         [TestCase("2", 2)]
         public void Parse_SingleNumber_NumberParsed(string input, int expected)
         {
-            parameterParser.Parse(input);
+            parameterParser = new ParameterParser(input);
             List<int> numbers = parameterParser.GetNumbers().ToList();
             Assert.AreEqual(1, numbers.Count());
             CollectionAssert.Contains(numbers, expected);
@@ -39,7 +34,7 @@ namespace StringCalculator.Tests
         [TestCase("1,2,3", new[] { 1, 2, 3 })]
         public void Parse_ManyNumbers_ResturnsTheirSum(string input, int[] expected)
         {
-            parameterParser.Parse(input);
+            parameterParser = new ParameterParser(input);
             List<int> numbers = parameterParser.GetNumbers().ToList();
             Assert.AreEqual(expected.Count(), numbers.Count());
             foreach (int n in expected)
@@ -51,7 +46,7 @@ namespace StringCalculator.Tests
         [Test]
         public void Parse_NewLine_TreatedAsSeparator()
         {
-            parameterParser.Parse("1\n2");
+            parameterParser = new ParameterParser("1\n2");
             List<int> numbers = parameterParser.GetNumbers().ToList();
             Assert.AreEqual(2, numbers.Count());
             CollectionAssert.Contains(numbers, 1);
@@ -62,13 +57,13 @@ namespace StringCalculator.Tests
         [ExpectedException(typeof(FormatException))]
         public void Add_TwoSeparatorsNextToEachOther_IsError()
         {
-            parameterParser.Parse("1\n,2");
+            parameterParser = new ParameterParser("1\n,2");
         }
 
         [Test]
         public void Add_WithCustomDelimiter_UsesTheCustomDelimiter()
         {
-            parameterParser.Parse("//%\n1%2");
+            parameterParser = new ParameterParser("//%\n1%2");
             List<int> numbers = parameterParser.GetNumbers().ToList();
             Assert.AreEqual(2, numbers.Count());
             CollectionAssert.Contains(numbers, 1);
@@ -78,7 +73,7 @@ namespace StringCalculator.Tests
         [Test]
         public void Parse_WithMultipleSeparators_ConsidersAllSeparators()
         {
-            parameterParser.Parse("//[$][%]\n1$2%3");
+            parameterParser = new ParameterParser("//[$][%]\n1$2%3");
             List<int> numbers = parameterParser.GetNumbers().ToList();
             Assert.AreEqual(3, numbers.Count());
             CollectionAssert.Contains(numbers, 1);
