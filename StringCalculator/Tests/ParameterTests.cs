@@ -38,7 +38,7 @@ namespace StringCalculator.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(FormatException))]
         public void GetNumbers_TwoSeparators_Throws()
         {
             Parameter parameter = new Parameter("1\n,2");

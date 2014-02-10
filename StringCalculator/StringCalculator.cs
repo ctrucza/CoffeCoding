@@ -9,8 +9,8 @@ namespace StringCalculator
 
         public int Add(string s)
         {
-            Parameter input = new Parameter(s);
-            numbers = input.GetNumbers();
+            Parameter parameter = new Parameter(s);
+            numbers = parameter.GetNumbers();
             return numbers.Sum();
         }
     }

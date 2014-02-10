@@ -44,7 +44,7 @@ namespace StringCalculator.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(FormatException))]
         public void Add_TwoSeparatorsNextToEachOther_IsError()
         {
             stringCalculator.Add("1\n,2");
