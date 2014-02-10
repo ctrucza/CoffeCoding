@@ -35,10 +35,11 @@ namespace StringCalculator.Tests
         }
 
         [Test]
-        public void AddNumbers_NotNegativeNumber_DoesNotFail()
+        public void AddNumbers_NotNegativeNumber_DoesNotThrow()
         {
-            bunchOfNumbers.AddNumbers(new[]{1});
-            CollectionAssert.IsNotEmpty(bunchOfNumbers.GetNumbers());
+            Assert.DoesNotThrow( () => 
+                bunchOfNumbers.AddNumbers(new[]{1})
+                );
         }
 
         [Test]
