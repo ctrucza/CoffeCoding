@@ -43,11 +43,12 @@
     <Compile Include="ParameterFilter.cs" />
     <Compile Include="ParameterParser.cs" />
     <Compile Include="SeparatorLine.cs" />
+    <Compile Include="StringCalculatorV2.cs" />
     <Compile Include="Tests\ParameterFilterTests.cs" />
     <Compile Include="NegativeNumbersNotAllowedException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringCalculator.cs" />
+    <Compile Include="StringCalculatorV1.cs" />
     <Compile Include="Parameter.cs" />
     <Compile Include="Tests\ParameterParserTests.cs" />
     <Compile Include="Tests\ParameterTests.cs" />
